@@ -1,4 +1,4 @@
-import { ClientError, ClientMiddlewareCall, CallOptions } from 'nice-grpc';
+import { CallOptions, ClientError, ClientMiddlewareCall } from 'nice-grpc';
 import { ErrorMessagesType } from '../errors/api_errors';
 declare type ErrorTrailers = {
     trackId?: string;

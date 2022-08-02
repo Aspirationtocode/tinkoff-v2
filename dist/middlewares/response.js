@@ -44,6 +44,7 @@ function getMiddleware(loggerCb) {
                     console.log('Client error: ', `error: ${error}`, path);
                 }
             }
+            throw errorMetadata;
         }
     };
 }

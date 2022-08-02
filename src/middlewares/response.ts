@@ -1,5 +1,5 @@
-import { ClientError, ClientMiddlewareCall, Status, CallOptions, Metadata } from 'nice-grpc';
-import { errorStatus, ErrorMessagesType } from '../errors/api_errors';
+import { CallOptions, ClientError, ClientMiddlewareCall, Metadata, Status } from 'nice-grpc';
+import { ErrorMessagesType, errorStatus } from '../errors/api_errors';
 
 type ErrorTrailers = {
   trackId?: string;
@@ -57,6 +57,7 @@ export function getMiddleware(loggerCb?: TypeLoggerCb) {
           console.log('Client error: ', `error: ${error}`, path);
         }
       }
+      throw errorMetadata;
     }
   };
 }
