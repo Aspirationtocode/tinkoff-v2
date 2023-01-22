@@ -1,4 +1,4 @@
-import { CallOptions, ClientError, ClientMiddlewareCall, Metadata, Status } from 'nice-grpc';
+import { CallOptions, ClientError, ClientMiddlewareCall, Metadata } from 'nice-grpc';
 import { ErrorMessagesType, errorStatus } from '../errors/api_errors';
 
 type ErrorTrailers = {
@@ -45,16 +45,16 @@ export function getMiddleware(loggerCb?: TypeLoggerCb) {
       const errStatus = isClientError ? errorStatus[error.details] : undefined;
 
       if (loggerCb) {
-        loggerCb(errorMetadata, error, errStatus);
+        // loggerCb(errorMetadata, error, errStatus);
       } else {
         if (isClientError) {
           const errDescription = errStatus && errorStatus[error.details] && errorStatus[error.details].description;
 
-          console.log(errorMetadata);
-          console.log('Client error:', `${Status[error.code]}(${error.details}) \n${errDescription || ''} \n${path}`);
+          // console.log(errorMetadata);
+          // console.log('Client error:', `${Status[error.code]}(${error.details}) \n${errDescription || ''} \n${path}`);
         } else {
-          console.log(errorMetadata);
-          console.log('Client error: ', `error: ${error}`, path);
+          // console.log(errorMetadata);
+          // console.log('Client error: ', `error: ${error}`, path);
         }
       }
       throw errorMetadata;

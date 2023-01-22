@@ -31,17 +31,12 @@ function getMiddleware(loggerCb) {
             const isClientError = error instanceof nice_grpc_1.ClientError;
             const errStatus = isClientError ? api_errors_1.errorStatus[error.details] : undefined;
             if (loggerCb) {
-                loggerCb(errorMetadata, error, errStatus);
             }
             else {
                 if (isClientError) {
                     const errDescription = errStatus && api_errors_1.errorStatus[error.details] && api_errors_1.errorStatus[error.details].description;
-                    console.log(errorMetadata);
-                    console.log('Client error:', `${nice_grpc_1.Status[error.code]}(${error.details}) \n${errDescription || ''} \n${path}`);
                 }
                 else {
-                    console.log(errorMetadata);
-                    console.log('Client error: ', `error: ${error}`, path);
                 }
             }
             throw errorMetadata;
